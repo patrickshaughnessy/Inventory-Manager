@@ -1,12 +1,12 @@
 {
   "name": "inventorymanager",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "authors": [
     "Patrick Shaughnessy <pshaughn86@gmail.com>"
   ],
   "license": "ISC",
-  "homepage": "https://github.com/CodingHouseFI/pshaughn86",
+  "homepage": "",
   "moduleType": [],
   "ignore": [
     "**/.*",
