@@ -1,0 +1,25 @@
+.home {
+  text-align: center;
+  font-family: 'Gloria Hallelujah', cursive;
+
+}
+
+.room {
+  border: 1px solid black;
+  display: inline-block;
+  text-align: center;
+  text-transform: capitalize;
+  font-family: 'Architects Daughter', cursive;
+
+
+}
+
+.name {
+  text-transform: capitalize;
+  text-decoration: underline;
+}
+
+.back {
+  margin-top: 10%;
+  text-align: center;
+}
