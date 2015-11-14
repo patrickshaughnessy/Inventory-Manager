@@ -2,12 +2,16 @@
 
 var PORT = process.env.PORT || 3000;
 
+require('dotenv').load();
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/inventorymanager');
+mongoose.connect('mongodb://'+process.env.DB_USER+':'+process.env.DB_PASSWORD+'@ds053764.mongolab.com:53764/inventorymanager' || 'mongodb://localhost/inventorymanager');
+
 
 var app = express();
 
