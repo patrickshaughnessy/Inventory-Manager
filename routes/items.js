@@ -32,17 +32,17 @@ router.get('/', function(req, res){
 
 });
 
-router.get('/id/:id', (req, res) => {
-  console.log('PARAMS:', req.params.id);
-
-  Item.findById(req.params.id, function(err, item){
-    console.log(item);
-    res.send(item);
-  });
-});
+// router.get('/id/:id', (req, res) => {
+//   console.log('PARAMS:', req.params.id);
+//
+//   Item.findById(req.params.id, function(err, item){
+//     console.log(item);
+//     res.send(item);
+//   });
+// });
 
 router.post('/', function(req, res){
-  var roomId = req.body.room
+  // var roomId = req.body.room
 
   Item.addItem(req.body, function(err, newItem){
     console.log(newItem);
@@ -58,6 +58,14 @@ router.post('/', function(req, res){
     // });
   });
 });
+
+router.delete('/', function(req, res){
+
+  Item.findByIdAndRemove(req.body.clickedId, function(err, item){
+    if (err) res.status(400).send(err);
+    res.send(item._id);
+  });
+})
 
 
 module.exports = router;

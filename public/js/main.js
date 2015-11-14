@@ -4,10 +4,57 @@ $(document).ready(init);
 
 function init(){
 
-  $('li>a.btn').on('click', goToRoom);
+  $('li>.btn').on('click', goToRoom);
   $('#addRoom').click(addRoom);
   $('#addItem').click(addItem);
+  $('#unassignedItems').on('click', '.item', selectItem);
+  $('#itemsArea').on('click', '.item', selectItem);
+  $('#delete').on('click', deleteItems);
 
+}
+
+function deleteItems(){
+  var clickedId = $('.highlight').data('mongoid');
+  console.log('here', clickedId)
+  $.ajax('/items', {
+    method: "DELETE",
+    data: {clickedId: clickedId},
+    success: function(id){
+      $('.highlight').remove();
+    }
+  })
+}
+
+function moveItemsToRoom(roomId){
+  var clickedIds = [];
+
+  if ($('.highlight').length === 1){
+    clickedIds.push($('.highlight').data('mongoid'));
+  } else {
+    $('.highlight').each(function(i, elem){
+      clickedIds.push(elem.dataset.mongoid);
+    });
+  }
+
+  console.log(clickedIds);
+
+  $.ajax('/rooms', {
+    method: 'PUT',
+    data: {
+      roomId: roomId,
+      clickedIds: clickedIds
+    },
+    success: function(itemId){
+      console.log(itemId);
+      $('.highlight').remove();
+
+    }
+  });
+}
+
+function selectItem(event){
+  $('.highlight').removeClass('highlight');
+  $(this).toggleClass('highlight');
 }
 
 function addItem(){
@@ -45,9 +92,15 @@ function addRoom(){
 }
 
 function goToRoom(event){
-  var roomId = '/downstairs/' + $(this).data('mongoid');
-  $.get(roomId)
+  var roomId = $(this).data('mongoid');
+  var roomURL = '/downstairs/' + $(this).data('mongoid');
+  console.log(roomURL);
+  $.get(roomURL)
     .done(function(data){
+      if ($('.highlight').length){
+        moveItemsToRoom(roomId);
+        showItems(data);
+      }
       showItems(data);
     }).fail(function(err){
       console.error(err);
@@ -56,14 +109,13 @@ function goToRoom(event){
 
 function showItems(room){
   $('#itemsArea').empty();
-  // console.log(room);
-  var $items = $('<div>').addClass('col-xs-6 item');
+  var $items = $('<div>').addClass("row");
   room.items.forEach(function(item){
     console.log(item)
     var $name = $('<h1>').text(item.name);
     var $description = $('<h2>').text(item.description)
     var $price = $('<h3>').text('$'+item.value.toString());
-    var $item = $('<div>').append($name, $description, $price);
+    var $item = $('<div>').addClass('col-xs-5 item').data('mongoid', item._id).append($name, $description, $price);
     $items.append($item);
   });
   $('#itemsArea').append($items);

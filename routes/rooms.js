@@ -42,32 +42,53 @@ router.get('/:roomId/items', function(req, res){
   Room.findById(req.params.roomId, function(err, room){
     // if (err) return res.status(400).send(err.message);
 
-    console.log('room:', room);
+    // console.log('room:', room);
     res.render('room', {room: room});
   }).populate('items');
-})
-
-
-router.put('/:roomId/addItem/:itemId', (req, res) => {
-  console.log(req.params);
-  Room.findById(req.params.roomId, function(err, room){
-    if (err) return res.status(400).send(err.message);
-    Item.findById(req.params.itemId, function(err, item){
-      if (err) return res.status(400).send(err.message);
-
-      if (room.items.indexOf(item._id) === -1){
-        room.items.push(item._id);
-        room.save(function(err){
-          res.status(err ? 400 : 200).send(err ? 'item add failed' : "item added to room");
-        });
-      } else {
-        res.status(400).send('item already in room');
-      }
-
-    });
-
-  })
 });
+
+router.put('/', function(req, res){
+  // console.log(req.body);
+
+  Room.findById(req.body.roomId, function(err, room){
+    if (err) return res.status(400).send(err.message);
+      console.log(req.body.clickedIds);
+    for (var i = 0; i < req.body.clickedIds.length; i++){
+      Item.findById(req.body.clickedIds[i], function(err, item){
+        if (err) return res.status(400).send(err.message);
+
+        if (room.items.indexOf(item._id) === -1){
+          room.items.push(item._id);
+          room.save(function(err){
+            res.status(err ? 400 : 200).send(err ? 'item add failed' : item._id);
+          });
+        } else {
+          res.status(400).send('item already in room');
+        };
+      });
+    };
+  });
+});
+// router.put('/:roomId/addItem/:itemId', (req, res) => {
+//   console.log(req.params);
+//   Room.findById(req.params.roomId, function(err, room){
+//     if (err) return res.status(400).send(err.message);
+//     Item.findById(req.params.itemId, function(err, item){
+//       if (err) return res.status(400).send(err.message);
+//
+//       if (room.items.indexOf(item._id) === -1){
+//         room.items.push(item._id);
+//         room.save(function(err){
+//           res.status(err ? 400 : 200).send(err ? 'item add failed' : "item added to room");
+//         });
+//       } else {
+//         res.status(400).send('item already in room');
+//       }
+//
+//     });
+//
+//   })
+// });
 
 //
 // router.get('/id/:id', (req, res) => {

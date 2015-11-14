@@ -20,11 +20,14 @@ router.get('/', function(req, res){
         });
       };
     });
-    console.log('items in room', itemsInRooms);
+    // console.log('items in room', itemsInRooms);
 
-    Item.find({"_id":{"$ne":itemsInRooms}}, function(err, items){
+    // Item.find({"_id":{"$ne":itemsInRooms}}, function(err, items){
+    //   if (err) return res.status(400).send(err);
+    //   console.log('items', items, 'rooms', rooms);
+    Item.find({}, function(err, items){
       if (err) return res.status(400).send(err);
-      console.log('items', items, 'rooms', rooms);
+      // console.log('items', items, 'rooms', rooms);
 
       // console.log('indexof', itemsInRooms.indexOf(items[4]._id));
       //
@@ -38,6 +41,7 @@ router.get('/', function(req, res){
       // console.log('post filter', items)
       res.render('downstairs', {rooms: rooms, items: items});
     })
+    .nin('_id', itemsInRooms);
   });
 });
 

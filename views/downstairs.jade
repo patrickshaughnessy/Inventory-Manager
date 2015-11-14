@@ -3,7 +3,7 @@ html
     title Inventory
     link(rel="stylesheet", href="bower_components/bootstrap/dist/css/bootstrap.min.css")
     link(href='https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Architects+Daughter', rel='stylesheet', type='text/css')
-    //- link(rel="stylesheet", href="bower_components/font-awesome/css/font-awesome.min.css")
+    link(rel="stylesheet", href="bower_components/font-awesome/css/font-awesome.min.css")
     link(rel="stylesheet", href="css/style.css")
   body
   
@@ -51,6 +51,10 @@ html
                      input#newItemValue.form-control(type='number', placeholder='How much is it worth?', aria-describedby='basic-addon1')
                 .modal-footer
                   button.btn.btn-primary#addItem(type='button', data-dismiss='modal') Do it!
+          a.btn.btn-danger#delete
+            i.fa.fa-trash-o.fa-lg
+            |  Delete
+
       .row
         .col-xs-3
           ul.nav.nav-pills.nav-stacked#roomsArea
@@ -58,8 +62,8 @@ html
               - var id = room._id.toString()
               li(role='presentation')
                 a.btn.btn-primary.btn-lg.roomButton(data-mongoid= id)= room.name
-        .col-xs-6
-          .row#itemsArea
+        .col-xs-6#itemsArea
+          .row
         .col-xs-3
           .row#unassignedItems
             each item in items
