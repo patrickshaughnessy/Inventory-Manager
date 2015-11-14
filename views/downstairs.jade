@@ -1,0 +1,79 @@
+html
+  head
+    title Inventory
+    link(rel="stylesheet", href="bower_components/bootstrap/dist/css/bootstrap.min.css")
+    link(href='https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Architects+Daughter', rel='stylesheet', type='text/css')
+    //- link(rel="stylesheet", href="bower_components/font-awesome/css/font-awesome.min.css")
+    link(rel="stylesheet", href="css/style.css")
+  body
+  
+    .container-fluid.home
+      img(src="http://cdn.home-designing.com/wp-content/uploads/2013/08/natural-light-apartment-2.jpg")
+      .row
+        .col-xs-6
+          h1 Welcome to your new home
+        .col-xs-3
+          button.btn.btn-default.btn-lg(type='button', data-toggle='modal', data-target='#addRoomModal') Add a new room
+          // Modal
+          #addRoomModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='addRoomModalLabel')
+            .modal-dialog(role='document')
+              .modal-content
+                .modal-header
+                  button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true') ×
+                  h4#addRoomModalLabel.modal-title Add a new room
+                .modal-body
+                  .input-group
+                     span.input-group-addon Room Name:
+                     input#newRoomName.form-control(type='text', placeholder='Your super duper room', aria-describedby='basic-addon1')
+                .modal-footer
+                  button.btn.btn-primary#addRoom(type='button' data-dismiss='modal') Do it!
+          
+        .col-xs-3
+          button.btn.btn-default.btn-lg(type='button', data-toggle='modal', data-target='#addItemModal') Add a new item
+          // Modal
+          #addItemModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='addItemModalLabel')
+            .modal-dialog(role='document')
+              .modal-content
+                .modal-header
+                  button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true') ×
+                  h4#addItemModalLabel.modal-title Add a new item
+                .modal-body
+                  .input-group
+                     span.input-group-addon Item Name:
+                     input#newItemName.form-control(type='text', placeholder='Your super duper item', aria-describedby='basic-addon1')
+                  .input-group
+                     span.input-group-addon Item Description:
+                     textarea#newItemDescription.form-control(rows='2', placeholder='Tell us about it', aria-describedby='basic-addon1')
+                  .input-group
+                     span.input-group-addon Item Value: $
+                     input#newItemValue.form-control(type='number', placeholder='How much is it worth?', aria-describedby='basic-addon1')
+                .modal-footer
+                  button.btn.btn-primary#addItem(type='button', data-dismiss='modal') Do it!
+      .row
+        .col-xs-3
+          ul.nav.nav-pills.nav-stacked#roomsArea
+            each room in rooms
+              - var id = room._id.toString()
+              li(role='presentation')
+                a.btn.btn-primary.btn-lg.roomButton(data-mongoid= id)= room.name
+        .col-xs-6
+          .row#itemsArea
+        .col-xs-3
+          .row#unassignedItems
+            each item in items
+              - var name = item.name
+              - var description = item.description
+              - var price = item.value.toString()
+              - var itemId = item._id.toString()
+              .col-xs-12.item(data-mongoid= itemId)
+                h1= name
+                h2= description
+                h3 $#{price}
+            
+
+
+  script(src="bower_components/jquery/dist/jquery.min.js")
+  script(src="bower_components/bootstrap/dist/js/bootstrap.min.js")
+  script(src="js/main.js")

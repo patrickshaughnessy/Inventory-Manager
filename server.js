@@ -23,6 +23,9 @@ app.use('/items', require('./routes/items'));
 app.use('/rooms', require('./routes/rooms'));
 app.use('/querytests', require('./routes/querytests'));
 
+app.use('/upstairs', require('./routes/upstairs'));
+app.use('/downstairs', require('./routes/downstairs'));
+
 app.listen(PORT, function(){
   console.log('Now listening on port: ' + PORT);
 });

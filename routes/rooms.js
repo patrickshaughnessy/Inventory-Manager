@@ -78,10 +78,11 @@ router.put('/:roomId/addItem/:itemId', (req, res) => {
 //   });
 // });
 //
-// router.post('/', function(req, res){
-//   Room.addRoom(req.body, function(err, newRoom){
-//     res.status(err ? 400 : 200).send(err ? 'room save failed' : "room saved");
-//   });
-// });
+router.post('/', function(req, res){
+  console.log(req.body);
+  Room.addRoom(req.body, function(err, newRoom){
+    res.status(err ? 400 : 200).send(err ? 'room save failed' : newRoom._id);
+  });
+});
 
 module.exports = router;

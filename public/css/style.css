@@ -1,25 +1,42 @@
 .home {
-  text-align: center;
+  /*background-image: url("http://hbu.h-cdn.co/assets/cm/15/05/980x490/landscape_nrm_54c4956d156f2_-_01-hbx-blue-house-exterior-0513-xln-42436446.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;*/
+
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+}
+
+.title, .upstairs, .downstairs {
+  position: absolute;
+  left: 1%;
+}
+
+.title {
   font-family: 'Gloria Hallelujah', cursive;
-
 }
 
-.room {
-  border: 1px solid black;
-  display: inline-block;
+.upstairs {
   text-align: center;
-  text-transform: capitalize;
   font-family: 'Architects Daughter', cursive;
-
-
+  top: 50%;
 }
 
-.name {
-  text-transform: capitalize;
-  text-decoration: underline;
-}
-
-.back {
-  margin-top: 10%;
+.downstairs {
   text-align: center;
+  font-family: 'Architects Daughter', cursive;
+  bottom: 17%
+}
+
+img {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+}
+
+.item {
+  background-color: rgba(79, 32, 0, 0.6);
+  color: white;
+  margin: 1%;
 }

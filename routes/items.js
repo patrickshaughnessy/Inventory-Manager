@@ -45,16 +45,17 @@ router.post('/', function(req, res){
   var roomId = req.body.room
 
   Item.addItem(req.body, function(err, newItem){
-    // res.status(err ? 400 : 200).send(err || 'item saved: ' + newItem);
-    console.log(newItem._id);
-    Room.findById(roomId, function(err, room){
-      if (err) return res.status(400).send(err.message);
-      room.items.push(newItem._id);
-      room.save(function(err){
-        // res.status(err ? 400 : 200).send(err ? 'item add failed' : "item added to room")
-        res.redirect('/');
-      });
-    });
+    console.log(newItem);
+    res.status(err ? 400 : 200).send(err || newItem._id);
+    // console.log(newItem._id);
+    // Room.findById(roomId, function(err, room){
+    //   if (err) return res.status(400).send(err.message);
+    //   room.items.push(newItem._id);
+    //   room.save(function(err){
+    //     res.status(err ? 400 : 200).send(err ? 'item add failed' : "item added to room")
+    //     res.redirect('/');
+    //   });
+    // });
   });
 });
 

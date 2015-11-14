@@ -6,59 +6,72 @@ html
     //- link(rel="stylesheet", href="bower_components/font-awesome/css/font-awesome.min.css")
     link(rel="stylesheet", href="css/style.css")
   body
-    h1.home Our Current Inventory
-    
-    .container
+  
+    .container-fluid.home
+      img(src="http://hbu.h-cdn.co/assets/cm/15/05/980x653/gallery_nrm_54c4956d156f2_-_01-hbx-blue-house-exterior-0513-xln-42436446.jpg")
       .row
-        .col-xs-12
-          .row
-            each room in rooms
-              - var roomId = room._id.toString()
-              .col-xs-6.room(data-mongoid= roomId)
-                a(href='/rooms/'+roomId+'/items')
-                  h1= room.name
-                  
-    
-    .container
-      .row
-        .col-xs-1.col-xs-offset-5
-          button.btn.btn-success.btn-lg(type='button', data-toggle='modal', data-target='#newItemModal') Post A New Message
-          #newItemModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='newItemModalLabel')
-            .modal-dialog(role='document')
-              .modal-content
-                .modal-header
-                  button.close(type='button', data-dismiss='modal', aria-label='Close')
-                    span(aria-hidden='true') ×
-                  h4#newItemModalLabel.modal-title Put in a new item
-                .modal-body
-                  //- - var garage = rooms[0]._id;
-                  //- - var kitchen = rooms[1]._id;
-                  //- - var bedroom = rooms[2]._id;
-                  form(method='POST', action="/items")
-                    .form-group
-                      label(for='nameInput') Name
-                      input#nameInput.form-control(type='text', placeholder='Name', name="name")
-                    .form-group
-                      label(for='valueInput') Price
-                      input#valueInput.form-control(type='number', placeholder='Price', name="value")
-                    .form-group
-                      textarea.form-control(rows='3', name="description")
-                      .radio
-                        label
-                          input#optionsRadios1(type='radio', name='room', value="564661a4621aa59d863cedaa", checked='')
-                          |     Put it in the garage
-                      .radio
-                        label
-                          input#optionsRadios2(type='radio', name='room', value="564661a9621aa59d863cedab")
-                          |     This belongs in the kitchen
-                      .radio
-                        label
-                          input#optionsRadios3(type='radio', name='room', value="564661ad621aa59d863cedac")
-                          |     It's definitely for the bedroom
-                    button.btn.btn-default(type='submit') Submit
-                .modal-footer
-                  button.btn.btn-default(type='button', data-dismiss='modal') Close
+        .col-xs-12.title
+          h1 Welcome to your new home
           
+        .col-xs-12.upstairs
+          a.btn.btn-default.btn-lg#upstairsButton(href="/upstairs") Upstairs
+        
+        .col-xs-12.downstairs
+          a.btn.btn-default.btn-lg#downstairsButton(href='/downstairs') Downstairs
+    //- 
+    //- h1.home Our Current Inventory
+    //- 
+    //- .container
+    //-   .row
+    //-     .col-xs-12
+    //-       .row
+    //-         each room in rooms
+    //-           - var roomId = room._id.toString()
+    //-           .col-xs-6.room(data-mongoid= roomId)
+    //-             a(href='/rooms/'+roomId+'/items')
+    //-               h1= room.name
+    //-               
+    //- 
+    //- .container
+    //-   .row
+    //-     .col-xs-1.col-xs-offset-5
+    //-       button.btn.btn-success.btn-lg(type='button', data-toggle='modal', data-target='#newItemModal') Post A New Message
+    //-       #newItemModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='newItemModalLabel')
+    //-         .modal-dialog(role='document')
+    //-           .modal-content
+    //-             .modal-header
+    //-               button.close(type='button', data-dismiss='modal', aria-label='Close')
+    //-                 span(aria-hidden='true') ×
+    //-               h4#newItemModalLabel.modal-title Put in a new item
+    //-             .modal-body
+    //-               //- - var garage = rooms[0]._id;
+    //-               //- - var kitchen = rooms[1]._id;
+    //-               //- - var bedroom = rooms[2]._id;
+    //-               form(method='POST', action="/items")
+    //-                 .form-group
+    //-                   label(for='nameInput') Name
+    //-                   input#nameInput.form-control(type='text', placeholder='Name', name="name")
+    //-                 .form-group
+    //-                   label(for='valueInput') Price
+    //-                   input#valueInput.form-control(type='number', placeholder='Price', name="value")
+    //-                 .form-group
+    //-                   textarea.form-control(rows='3', name="description")
+    //-                   .radio
+    //-                     label
+    //-                       input#optionsRadios1(type='radio', name='room', value="564661a4621aa59d863cedaa", checked='')
+    //-                       |     Put it in the garage
+    //-                   .radio
+    //-                     label
+    //-                       input#optionsRadios2(type='radio', name='room', value="564661a9621aa59d863cedab")
+    //-                       |     This belongs in the kitchen
+    //-                   .radio
+    //-                     label
+    //-                       input#optionsRadios3(type='radio', name='room', value="564661ad621aa59d863cedac")
+    //-                       |     It's definitely for the bedroom
+    //-                 button.btn.btn-default(type='submit') Submit
+    //-             .modal-footer
+    //-               button.btn.btn-default(type='button', data-dismiss='modal') Close
+    //-       
   script(src="bower_components/jquery/dist/jquery.min.js")
   script(src="bower_components/bootstrap/dist/js/bootstrap.min.js")
   script(src="js/main.js")

@@ -8,6 +8,7 @@ var Room;
 var RoomSchema = mongoose.Schema({
   name: { type: String, required: true },
   items: [{ type: Schema.Types.ObjectId, ref: 'Item' }],
+  // image: String,
   createdAt: {
     type: Date,
     required: true,

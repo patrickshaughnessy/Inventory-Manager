@@ -6,25 +6,8 @@ html
     //- link(rel="stylesheet", href="bower_components/font-awesome/css/font-awesome.min.css")
     link(rel="stylesheet", href="/css/style.css")
   body
-  - var roomName = room.name
-    h1.home Inside the #{roomName}:
-    
-    .container
-      .row
-        .col-xs-12
-          .row
-            each item in room.items
-              .col-xs-6.room
-                - var price = item.value
-                - var time = item.createdAt
-                -var description = item.description
-                h1.name= item.name
-                h2 #{description}
-                h3.price Price: $#{price}
-                h6 This item was created at #{time}
-    .container.back
-      a(href='/')
-        button.btn.btn-primary Back
+    - var roomName = room.name
+    h1= roomName
             
   
           
