@@ -1,0 +1,39 @@
+html
+  head
+    title Inventory
+    link(rel="stylesheet", href="bower_components/bootstrap/dist/css/bootstrap.min.css")
+    link(href='https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Architects+Daughter', rel='stylesheet', type='text/css')
+    link(rel="stylesheet", href="bower_components/font-awesome/css/font-awesome.min.css")
+    link(rel='stylesheet', type='text/css', href='bower_components/sweetalert/dist/sweetalert.css')
+    link(rel="stylesheet", href="css/dungeon.css")
+  body
+    .container-fluid.home
+      .backgroundImage
+      img.z1(src="/images/Cades_Destination.jpeg")
+      #greetCade
+        img.cade(src="/images/cade.png")
+      img.z3(src="/images/Cades_Destination3.png")
+      .row
+        .col-xs-12.z4
+          h1 Welcome to your dungeon!
+        //- .col-xs-12#greetCade
+        //-   img(src="/images/cade.png")
+      .row
+        .col-xs-1.cell#cell1
+        .col-xs-1.cell#cell2
+        .col-xs-1.col-xs-offset-8.cell#cell3
+        .col-xs-1.cell#cell4
+
+          
+      //- ul
+      //-   each cade in cades
+      //-     - var image = cade.image
+      //-     li #{cade.name} is #{cade.description}
+      //-       img.cade(src=image)
+
+
+    //- audio(controls=true, src="https://costanzabach.stanford.edu/sites/default/files/Suite-1-G-Major-BWV-1007-Prelude-03C1E225-6A3A-4E1A-8FA1-57819AB5A259.mp3")
+  script(src="bower_components/jquery/dist/jquery.min.js")
+  script(src="bower_components/bootstrap/dist/js/bootstrap.min.js")
+  script(src='bower_components/sweetalert/dist/sweetalert.min.js')
+  script(src="js/dungeon.js")

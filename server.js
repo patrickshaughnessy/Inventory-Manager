@@ -9,8 +9,8 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 
 var mongoose = require('mongoose');
-// mongoose.connect('mongodb://localhost/inventorymanager');
-mongoose.connect('mongodb://'+process.env.DB_USER+':'+process.env.DB_PASSWORD+'@ds053764.mongolab.com:53764/inventorymanager' || 'mongodb://localhost/inventorymanager');
+mongoose.connect('mongodb://localhost/inventorymanager');
+// mongoose.connect('mongodb://'+process.env.DB_USER+':'+process.env.DB_PASSWORD+'@ds053764.mongolab.com:53764/inventorymanager' || 'mongodb://localhost/inventorymanager');
 
 
 var app = express();
@@ -27,8 +27,11 @@ app.use('/items', require('./routes/items'));
 app.use('/rooms', require('./routes/rooms'));
 app.use('/querytests', require('./routes/querytests'));
 
-app.use('/upstairs', require('./routes/upstairs'));
+// app.use('/upstairs', require('./routes/upstairs'));
 app.use('/downstairs', require('./routes/downstairs'));
+app.use('/cades', require('./routes/cades'));
+app.use('/dungeons', require('./routes/dungeons'));
+
 
 app.listen(PORT, function(){
   console.log('Now listening on port: ' + PORT);

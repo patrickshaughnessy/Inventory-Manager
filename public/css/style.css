@@ -7,6 +7,17 @@
   width: 100vw;
   padding: 0;
 }
+.homePage{
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+}
+.homePage img{
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+}
 
 .title, .upstairs, .downstairs {
   position: absolute;
@@ -29,10 +40,18 @@
   bottom: 17%
 }
 
-img {
+img.z1{
   height: 100vh;
   width: 100vw;
   position: absolute;
+  z-index: -1;
+}
+img.z3{
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .item {
@@ -43,4 +62,52 @@ img {
 
 .highlight {
   border: 3px solid gold;
+}
+
+
+#cade1 img {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  z-index: 0;
+  -webkit-transform:rotate(90deg);
+}
+
+#cade2 img {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  left: 25%;
+  top: 80%;
+  z-index: 0;
+  -webkit-transform:rotate(135deg);
+}
+
+#cade3 img {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  left: 13%;
+  top: 62%;
+  z-index: 0;
+}
+
+#cade4 img {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  left: 60%;
+  top: 58%;
+  z-index: 0;
+}
+
+#cade5 img {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  left: 73%;
+  top: 63%;
+  z-index: 0;
 }

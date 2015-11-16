@@ -11,6 +11,184 @@ function init(){
   $('#itemsArea').on('click', '.item', selectItem);
   $('#delete').on('click', deleteItems);
 
+  window.setTimeout(function(){
+    var audio = document.getElementsByTagName("audio")[0];
+    audio.play();
+  }, 5000);
+
+  window.setTimeout(function(){
+    $('#cade1 img').animate({
+      left: "+=5%",
+    }, 5000, function(){
+      $('#cade1 img').animate({
+        left: "-=5%",
+      }, 5000, function(){
+
+        window.setInterval(function(){
+          $('#cade1 img').animate({
+            left: "+=5%",
+          }, 5000, function(){
+            $('#cade1 img').animate({
+              left: "-=5%",
+            }, 5000)
+          });
+        }, 25000);
+
+      });
+    });
+  }, 5000);
+
+  window.setTimeout(function(){
+    $('#cade2 img').animate({
+      left: "+=6%",
+      top: "+=6%",
+    }, 5000, function(){
+      $('#cade2 img').animate({
+        left: "-=6%",
+        top: "-=6%",
+      }, 5000, function(){
+
+        window.setInterval(function(){
+          $('#cade2 img').animate({
+            left: "+=6%",
+            top: "+=6%"
+          }, 5000, function(){
+            $('#cade2 img').animate({
+              left: "-=6%",
+              top: "-=6%",
+            }, 5000)
+          });
+        }, 25000);
+
+      });
+    });
+  }, 10000);
+
+
+  window.setTimeout(function(){
+    $('#cade3 img').animate({
+      // left: "+=6%",
+      top: "-=6%",
+    }, 5000, function(){
+      $('#cade3 img').animate({
+        // left: "-=6%",
+        top: "+=6%",
+      }, 5000, function(){
+
+        window.setInterval(function(){
+          $('#cade3 img').animate({
+            // left: "+=6%",
+            top: "-=6%"
+          }, 5000, function(){
+            $('#cade3 img').animate({
+              // left: "-=6%",
+              top: "+=6%",
+            }, 5000)
+          });
+        }, 25000);
+
+      });
+    });
+  }, 15000);
+
+
+  window.setTimeout(function(){
+    $('#cade4 img').animate({
+      // left: "+=6%",
+      top: "-=8%",
+    }, 5000, function(){
+      $('#cade4 img').animate({
+        // left: "-=6%",
+        top: "+=8%",
+      }, 5000, function(){
+
+        window.setInterval(function(){
+          $('#cade4 img').animate({
+            // left: "+=6%",
+            top: "-=8%"
+          }, 5000, function(){
+            $('#cade4 img').animate({
+              // left: "-=6%",
+              top: "+=8%",
+            }, 5000)
+          });
+        }, 25000);
+
+      });
+    });
+  }, 20000);
+
+  window.setTimeout(function(){
+    $('#cade5 img').animate({
+      // left: "+=6%",
+      top: "-=6%",
+    }, 5000, function(){
+      $('#cade5 img').animate({
+        // left: "-=6%",
+        top: "+=6%",
+      }, 5000, function(){
+
+        window.setInterval(function(){
+          $('#cade5 img').animate({
+            // left: "+=6%",
+            top: "-=6%"
+          }, 5000, function(){
+            $('#cade5 img').animate({
+              // left: "-=6%",
+              top: "+=6%",
+            }, 5000)
+          });
+        }, 25000);
+
+      });
+    });
+  }, 25000);
+
+  $('.cade').on('click', captureCade);
+  $('#capturedCH').on('click', '.btn', putCadeInTheDungeon);
+
+}
+
+function captureCade(event){
+  var capturedCH = {};
+  capturedCH.name = $(this).parent().attr('id');
+  capturedCH.image = $(this).attr('src');
+
+  $.post('/cades', capturedCH)
+  .done(function(cade){
+    console.log(cade);
+
+    var modal = $('#capturedCH');
+
+    modal.find('.modal-title').text(`You have captured a wild ${cade.name}`).data('name', cade.name);
+    modal.find('.modal-body h1').text(`${cade.name} is a ${cade.description}`);
+
+    $('#capturedCH').modal('toggle');
+
+  })
+  .fail(function(err){
+    console.error(err);
+  });
+}
+
+function putCadeInTheDungeon(event, cade){
+  console.log(cade);
+  var checkedButton = $('#capturedCH input:checked').attr('id');
+  var name = $('#capturedCH').find('.modal-title').data('name');
+  if (checkedButton === 'dungeon'){
+    swal({
+      title: "Success!",
+      text: `${name} has been placed in the dungeon`,
+      type: "success",
+      confirmButtonText: "Cool!" });
+  } else {
+    swal({
+      title: "Sorry!",
+      text: `${name} has been placed in the dungeon`,
+      type: "error",
+      confirmButtonText: "Ok!" });
+  }
+  $(`#${name}`).remove();
 }
 
 function deleteItems(){

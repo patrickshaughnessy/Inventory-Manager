@@ -11,6 +11,18 @@ router.get('/', function(req, res){
   Room.find({}, function(err, rooms){
     if (err) return res.status(400).send(err);
 
+
+// better way - use reduce and concat - also, put in itemSchema.statics:
+// itemSchema.statics.findNotInRoom = function(cb){
+//   Room.find({}, function(err, rooms){
+//     if (err) return cb(err)
+//     var itemIds = rooms.reduce(function(itemsIds, room){
+//       return itemIds.concat(room.items)
+//     }, []);
+//     Item.find({_id: {$nin: itemIds}}, cb);
+//   });
+// };
+
     var itemsInRooms = [];
     rooms.forEach(function(room){
       if (room.items.length){

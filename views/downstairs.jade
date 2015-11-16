@@ -4,14 +4,18 @@ html
     link(rel="stylesheet", href="bower_components/bootstrap/dist/css/bootstrap.min.css")
     link(href='https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Architects+Daughter', rel='stylesheet', type='text/css')
     link(rel="stylesheet", href="bower_components/font-awesome/css/font-awesome.min.css")
+    link(rel='stylesheet', type='text/css', href='bower_components/sweetalert/dist/sweetalert.css')
     link(rel="stylesheet", href="css/style.css")
   body
-  
     .container-fluid.home
-      img(src="http://cdn.home-designing.com/wp-content/uploads/2013/08/natural-light-apartment-2.jpg")
+      .backgroundImage
+        img.z1(src="http://cdn.home-designing.com/wp-content/uploads/2013/08/natural-light-apartment-2.jpg")
+        img.z3(src="/images/Cades_Playground.png")
       .row
-        .col-xs-6
+        .col-xs-4
           h1 Welcome to your new home
+        .col-xs-2
+          a.btn.btn-lg.btn-info(href='/dungeons') Visit your dungeon
         .col-xs-3
           button.btn.btn-default.btn-lg(type='button', data-toggle='modal', data-target='#addRoomModal') Add a new room
           // Modal
@@ -75,9 +79,40 @@ html
                 h1= name
                 h2= description
                 h3 $#{price}
-            
+      #cade1
+        img.cade(src="/images/cade.png", data-target=".capturedCH")
+      #cade2
+        img.cade(src="/images/cade.png", data-target=".capturedCH")
+      #cade3
+        img.cade(src="/images/cade.png", data-target=".capturedCH")
+      #cade4
+        img.cade(src="/images/cade.png", data-target=".capturedCH")
+      #cade5
+        img.cade(src="/images/cade.png", data-target=".capturedCH")
+      .modal.fade#capturedCH
+        .modal-dialog
+          .modal-content
+            .modal-header
+              button.close(type='button', data-dismiss='modal', aria-label='Close')
+                span(aria-hidden='true') ×
+              h4.modal-title 
+            .modal-body
+              h1 Nothing
+              .radio
+                label
+                  input#dungeon(type='radio', name='optionsRadios', value='dungeon', checked='')
+                  |     Put 'em in the dungeon!
+              .radio
+                label
+                  input#other(type='radio', name='optionsRadios', value='other')
+                  |     Free all the Cades!
+            .modal-footer
+              button.btn.btn-default(type='button', data-dismiss='modal') Do it!
 
 
+
+    audio(controls=true, src="https://costanzabach.stanford.edu/sites/default/files/Suite-1-G-Major-BWV-1007-Prelude-03C1E225-6A3A-4E1A-8FA1-57819AB5A259.mp3")
   script(src="bower_components/jquery/dist/jquery.min.js")
   script(src="bower_components/bootstrap/dist/js/bootstrap.min.js")
+  script(src='bower_components/sweetalert/dist/sweetalert.min.js')
   script(src="js/main.js")

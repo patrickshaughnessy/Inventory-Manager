@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 
 var Room;
 
-var RoomSchema = mongoose.Schema({
+var roomSchema = mongoose.Schema({
   name: { type: String, required: true },
   items: [{ type: Schema.Types.ObjectId, ref: 'Item' }],
   // image: String,
@@ -16,11 +16,11 @@ var RoomSchema = mongoose.Schema({
   }
 });
 
-RoomSchema.statics.addRoom = function(room, cb){
+roomSchema.statics.addRoom = function(room, cb){
   var newRoom = new Room(room);
   newRoom.save(cb, newRoom);
 }
 
-Room = mongoose.model('Room', RoomSchema);
+Room = mongoose.model('Room', roomSchema);
 
 module.exports = Room;
