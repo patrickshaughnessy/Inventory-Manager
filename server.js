@@ -8,10 +8,13 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/inventorymanager');
+// mongoose.connect('mongodb://localhost/inventorymanager');
 // mongoose.connect('mongodb://'+process.env.DB_USER+':'+process.env.DB_PASSWORD+'@ds053764.mongolab.com:53764/inventorymanager' || 'mongodb://localhost/inventorymanager');
-
+var mongoURL = process.env.MONGOLAB_URI || 'mongodb://localhost/inventorymanager';
+var mongoose = require('mongoose');
+mongoose.connect(mongoURL, function(err){
+  console.log('Connected to MongoDB: ', mongoURL);
+});
 
 var app = express();
 
